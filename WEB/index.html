@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script type="text/javascript">
+         var socket = null;
+         var isopen = false;
+         var comScoket = null;
+         var comisopen = false;
+
+         window.onload = function() {
+
+            socket = new WebSocket("ws://localhost:9000");
+            socket.binaryType = "arraybuffer";
+
+            socket.onopen = function() {
+               console.log("socket: Connected!");
+               isopen = true;
+            }
+
+            socket.onmessage = function(e) {
+               if (typeof e.data == "string") {
+                  console.log("socket: Text message received: " + e.data);
+
+                  var parseData = e.data.split('|');
+
+                  if(parseData[0] == 'CONNECTION:PORT'){
+
+                     console.log("OK SNAZIM SA");
+
+                     comSocket = new WebSocket('ws://localhost:' + parseData[1])
+                     comSocket.binaryType = "arraybuffer";
+
+
+                     comSocket.onopen = function() {
+                        console.log("comScoket: Connected!");
+                        comisopen = true;
+                     }
+
+                     comSocket.onmessage = function(m) {
+                        console.log("comSocket: Text message received: " + m.data);
+                     }
+
+                     comSocket.onclose = function(m) {
+                        console.log("comSocket: Connection closed.");
+                        comSocket = null;
+                        comisopen = false;
+                     }
+                  }
+
+               } else {
+                  var arr = new Uint8Array(e.data);
+                  var hex = '';
+                  for (var i = 0; i < arr.length; i++) {
+                     hex += ('00' + arr[i].toString(16)).substr(-2);
+                  }
+                  console.log("Binary message received: " + hex);
+               }
+            }
+
+            socket.onclose = function(e) {
+               console.log("socket: Connection closed.");
+               socket = null;
+               isopen = false;
+            }
+         };
+
+         function sendOnline() {
+            if (isopen) {
+               socket.send("ONLINEROBOTS:WEBCLIENT|xtichy09");
+               console.log("socket: Text message sent.");               
+            } else {
+               console.log("socket: Connection not opened.")
+            }
+         };
+
+	     function sendRegistration() {
+            if (isopen) {
+               socket.send("REGISTRATION:WEBCLIENT|xtichy09");
+               console.log("socket: Text message sent.");               
+            } else {
+               console.log("socket: Connection not opened.")
+            }
+         };
+
+         function sendComRegistration() {
+            if (comisopen) {
+               comSocket.send("REGISTRATION:WEBCLIENT|xtichy09");
+               console.log("comSocket: Text message sent.");               
+            } else {
+               console.log("comSocket: Connection not opened.")
+            }
+         };
+
+         function sendMessage() {
+            if (comisopen) {
+               comSocket.send('MESSAGE:WEBCLIENT|{"ahoj":"ok"}');
+               console.log("comSocket: Text message sent.");               
+            } else {
+               console.log("comSocket: Connection not opened.")
+            }
+         };
+
+         function sendProcess() {
+            if (isopen) {
+               socket.send("STARTWORKING:WEBCLIENT|xtichy09|xrobot00|4");
+               console.log("socket: Text message sent.");               
+            } else {
+               console.log("socket: Connection not opened.")
+            }
+         };
+
+         function sendBinary() {
+            if (isopen) {
+               var buf = new ArrayBuffer(32);
+               var arr = new Uint8Array(buf);
+               for (i = 0; i < arr.length; ++i) arr[i] = i;
+               socket.send(buf);
+               console.log("Binary message sent.");
+            } else {
+               console.log("Connection not opened.")
+            }
+         };
+      </script>
+   </head>
+   <body>
+      <button onclick='sendRegistration();'>Registration</button>
+      <button onclick='sendOnline();'>Online</button>
+      <button onclick='sendProcess();'>Process</button>
+      <button onclick='sendComRegistration();'>Com Registration</button>
+      <button onclick='sendMessage();'>Send message</button>
+   </body>
+</html>
+

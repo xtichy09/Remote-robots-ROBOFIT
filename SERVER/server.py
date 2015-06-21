@@ -148,6 +148,8 @@ class MyServerProtocol(WebSocketServerProtocol):
 
 			elif self.id[1] == 'PROCESS':
 				if self.id[0] == 'REGISTRATION':
+					print "JSEM TADY A SESSION:"
+					print Sessions
 					for ses in Sessions:
 						if str(ses.getBridgePID()) == str(self.parseData[1]):
 							ses.addBridgeGetway(self)
@@ -184,7 +186,7 @@ if __name__ == '__main__':
 
 	print("SERVER START:" + str(sys.argv[1]))
 	port = sys.argv[1]
-	database = MySQLdb.connect(host='localhost', user='root', passwd='coru8onmur', db='robots')
+	database = MySQLdb.connect(host='localhost', user='root', passwd='athlon', db='robots')
 	factory = WebSocketServerFactory('ws://localhost:' + port, debug = False)
 	factory.protocol = MyServerProtocol
 	reactor.listenTCP(int(port), factory)
