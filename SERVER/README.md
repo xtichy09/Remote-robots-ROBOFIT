@@ -16,14 +16,14 @@ Komunikační vlákno [connectionmain.py], představuje proxy server mezi klient
 Poslední částí serveru je vlákno, které zajišťuje video stream [streamserver.py]. Od webového klienta očekává HTTP/GET [webstream protocol](TODO) hlavičku s přesně specifikovaným uzlem a parametry se kterými sa má video zpracovat. Tuto hlavičku dále server odešle procesu [video](TODO), který na robotovi zajištuje distribuci videostreamu a jeho úpravu.
 
 # Server protocol [server.py](server.py)
-Protokol servru je rozdelený na tri časti medzi klienov čo sú web, robot a podprocesy slúžiace na komunikáciu. 
-Základnú štruktúru správ tvorí trojice
+Protokol serveru je rozdělený na tři části mezi klienty což jsou web, robot a podprocesy sloužící ke komunikaci. 
+Základní strukturu zpráv tvoří trojice
 ```
 WHAT:WHO|PARAMS
 ```
-* **WHO** - rozlišuje od koho správa pochádza a která část protokolu se má použít
-* **WHAT** - definuje požadavku klienta na ktorú reaguje server
-* **PARAMS** - sú špecifické parametre pre jednotlivé požadavky
+* **WHO** - rozlišuje od koho zpráva pochází, a která část protokolu se má použít
+* **WHAT** - definuje požadavek klienta, na který reaguje server
+* **PARAMS** - jsou specifické parametry pro jednotlivé požadavky
 ```
 STARTWORKING:WEBCLIENT|xtichy09|xrobot00
 ```
@@ -31,16 +31,16 @@ STARTWORKING:WEBCLIENT|xtichy09|xrobot00
 # Packages
 * **[server.py](server.py)** - hlavní proces
 * **[connectionmain.py](connectionmain.py)** - komunikační vlákno
-* **[streamserver.py](streamserver.py)** - vlákno určené k prenosu videa
-* **[webportal.py](webportal.py)** - balíček obsahuje definíciu objektov
-* **[database.sql](database.sql)** - databáza zo startovacími dátami
+* **[streamserver.py](streamserver.py)** - vlákno určené k přenosu videa
+* **[webportal.py](webportal.py)** - balíček obsahuje definici objektů
+* **[database.sql](database.sql)** - databáze se startovacími datami
 
 #### Clients
 * [WEB](WEB)
 * [ROBOT](ROBOT)
 
 # Installation
-Prvním krokem je inštalace všech potrebních závislostí potrebných k spusteniu hlavného vlákna, webového klienta a databáze. 
+Prvním krokem je instalace všech potřebných závislostí ke spuštění hlavního vlákna, webového klienta a databáze. 
 ## Server.py
 * **[twisted matrix](https://twistedmatrix.com/trac/)** - python-twisted | 13.2.0-1ubuntu1
 * **json**
@@ -55,32 +55,32 @@ Prvním krokem je inštalace všech potrebních závislostí potrebných k spust
 * **Apache** - apache2 | 2.4.7-1ubuntu4.1 | amd64
 * **phpMyAdmin**
 ## Instalace serveru
-Vytvoríme si složku kde chceme mít zdrojové kódy servru.
+Vytvorříme si složku, kde chceme mít zdrojové kódy serveru.
 ```
 mkdir remote_robots_server
 cd remote_robots_server
 wget https://github.com/xtichy09/Remote-robots-ROBOFIT/tree/master/SERVER
 ```
-Pres aplikaci phpMyAdmin importujeme databázi na server. 
+Pŕes aplikaci phpMyAdmin importujeme databázi na server. 
 
 ## Instalace webového klienta
-Po správnem nastavení apache, skopírujeme zdrojové kódy webového klienta do složky WWW.
+Po správném nastavení apache zkopírujeme zdrojové kódy webového klienta do složky WWW.
 ```
 wget https://github.com/xtichy09/Remote-robots-ROBOFIT/tree/master/WEB
 ```
 
-Nyní je server pripravený na spustenie.
+Nyní je server připravený na spuštění.
 
 
 ## Running
-* Spustenie servru
+* Spuštění servru
 ```
 ./server.py PORT
 ----------------
 ./server.py 9000
 ```
 
-* **PORT** - port na ktorom naslouchá server, štandardne jsem zvolil port 9000 ale jinak je možné zvolit ktorýkolvek volný port
+* **PORT** - port na kterém naslouchá server, standardně jsem zvolil port 9000, ale jinak je možné zvolit kterýkoliv volný port
 
 #### Resources
 TODO

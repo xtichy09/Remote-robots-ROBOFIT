@@ -2,13 +2,13 @@ Remote-robots-ROBOFIT [![Build Status](TODO)](TODO)
 ===============
 
 #### Úvod
-Remote robots predstavuje komunikační vrstvu, která predstavuje jednoduché a levné riešenie v globálnej komunikácií a správe robotov založených na platforme [ROS](http://www.ros.org/). Predstavuje rozhranie medzi webovým klientom a ROS. Systém je rozdelený na tri hlavné části [SERVER](SERVER), [ROBOT](ROBOT), [WEB](WEB).
+Remote robots představuje komunikační vrstvu, která reprezentuje jednoduché a levné řešení v globální komunikaci a správě robotů založených na platformě [ROS](http://www.ros.org/). Představuje rozhraní mezi webovým klientem a ROS. Systém je rozdělený na tři hlavní části [SERVER](SERVER), [ROBOT](ROBOT), [WEB](WEB).
 
 #### Packages
 
-* [SERVER](SERVER) - je server který má na starosti vyrizovat registrace klientu a spouštet sprostretkovávat komunikaci medzi webovýk klientem a robotem
-* [ROBOT](ROBOT) - predstavje klienta, ktorý vytvára rozhranie medzi systémom a ROS platformou
-* [WEB](WEB) - predstavuje webového klienta, ktorý vytvára rozhranie medzi GUI a systémom
+* [SERVER](SERVER) - je server, který má na starosti vyřizovat registrace klientů a zprostředkovávat komunikaci mezi webovým klientem a robotem
+* [ROBOT](ROBOT) - představuje klienta, který vytváří rozhraní mezi systémom a ROS platformou
+* [WEB](WEB) - představuje webového klienta, který vytváří rozhraní mezi GUI a systémem
 
 #### Resources
 
