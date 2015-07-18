@@ -23,4 +23,8 @@ Remote robots představuje komunikační vrstvu, která reprezentuje jednoduché
 * 
 <div style="text-align:center"><img src ="https://github.com/xtichy09/Img/blob/master/remote_robots_doc/reactor.png" /></div>
 
+<img align="center" src="https://github.com/xtichy09/Img/blob/master/remote_robots_doc/reactor.png" alt="s">
+
+
+
 
