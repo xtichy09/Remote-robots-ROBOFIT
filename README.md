@@ -20,5 +20,7 @@ Remote robots představuje komunikační vrstvu, která reprezentuje jednoduché
 * licence
 * rosbridge
 * ros
+* 
+<div style="text-align:center"><img src ="https://github.com/xtichy09/Img/blob/master/remote_robots_doc/reactor.png" /></div>
 
 
